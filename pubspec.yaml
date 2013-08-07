@@ -1,0 +1,7 @@
+name: snowball
+version: 0.1.0
+author: Randy Merrill
+description: A simple debt snowball scheduler.
+dependencies:
+  browser: any
+  unittest: any
