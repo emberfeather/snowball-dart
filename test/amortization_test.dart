@@ -16,7 +16,7 @@ main() {
       var debt = new Debt('Test1', 100.0, .1, 25.0);
       var amortized = new Amortization(debt);
       expect(amortized.payments.length, 0);
-      amortized.addPayment();
+      amortized.addPayment(25);
       expect(amortized.payments.length, 1);
       expect(amortized.payments[0].interest, 0.83);
       expect(amortized.payments[0].principal, 24.17);
@@ -33,7 +33,7 @@ main() {
       var debt = new Debt('Test1', 100.0, .1, 25.0);
       var amortized = new Amortization(debt);
       expect(amortized.payments.length, 0);
-      amortized.amortize();
+      amortized.amortize(25);
       expect(amortized.payments.length, 5);
       expect(amortized.payments[4].interest, 0.02);
       expect(amortized.payments[4].principal, 2.11);
@@ -67,6 +67,14 @@ main() {
       expect(amortized.payments.length, 6);
       expect(amortized.payments[5].interest, 0.24);
       expect(amortized.payments[5].principal, 28.39);
+    });
+    
+    test('Payoff', () {
+      var debt = new Debt('Test1', 100.0, .1, 25.0);
+      var amortized = new Amortization(debt);
+      expect(amortized.payoff, 100.83);
+      amortized.addPayment(25);
+      expect(amortized.payoff, 76.46);
     });
   });
 }
