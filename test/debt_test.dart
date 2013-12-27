@@ -6,7 +6,7 @@ import 'package:snowball/debt.dart';
 var debt1;
 
 void setup() {
-  debt1 = new Debt('Test1', 2500, .1, 25);
+  debt1 = new Debt('Test1', 2500.0, .1, 25.0);
 }
 
 void main() {
