@@ -13,9 +13,9 @@ void main() {
   test('Initial values', () {
     setup();
     expect(debt1.label, 'Test1');
-    expect(debt1.balance, 2500);
+    expect(debt1.balance, 2500.0);
     expect(debt1.rate, .1);
-    expect(debt1.minPayment, 25);
+    expect(debt1.minPayment, 25.0);
   });
   
   group('Label', () {
@@ -36,14 +36,14 @@ void main() {
   group('Balance', () {
     test('Reassignment', () {
       setup();
-      expect(debt1.balance, 2500);
-      debt1.balance = 1000;
-      expect(debt1.balance, 1000);
+      expect(debt1.balance, 2500.0);
+      debt1.balance = 1000.0;
+      expect(debt1.balance, 1000.0);
     });
     
     test('Negative', () {
       setup();
-      expect(() { debt1.balance = -1; }, throwsException);
+      expect(() { debt1.balance = -1.0; }, throwsException);
     });
   });
   
@@ -69,9 +69,9 @@ void main() {
   group('Min payment', () {
     test('Reassignment', () {
       setup();
-      expect(debt1.minPayment, 25);
-      debt1.minPayment = 135;
-      expect(debt1.minPayment, 135);
+      expect(debt1.minPayment, 25.0);
+      debt1.minPayment = 135.0;
+      expect(debt1.minPayment, 135.0);
     });
     
     test('Negative', () {
@@ -81,8 +81,8 @@ void main() {
     
     test('Zero', () {
       setup();
-      debt1.minPayment = 0;
-      expect(debt1.minPayment, 0);
+      debt1.minPayment = 0.0;
+      expect(debt1.minPayment, 0.0);
     });
   });
 }
