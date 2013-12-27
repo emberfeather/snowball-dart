@@ -9,7 +9,7 @@ class Debt {
   num _rate;
   num _minPayment;
   
-  Debt(label, balance, rate, minPayment) {
+  Debt(String label, num balance, num rate, num minPayment) {
     this.label = label;
     this.balance = balance;
     this.rate = rate;
