@@ -11,7 +11,7 @@ class Amortization {
   num _balance;
   List<Payment> _payments = [];
   int _paymentsPerYear = 12;
-  bool _isInfinite = false;
+  bool _isInterestOnly = false;
   
   Amortization(Debt debt) {
     _debt = debt;
@@ -24,7 +24,7 @@ class Amortization {
   Debt get debt => _debt;
   
   // Amortization is infinite if not paying more than interest.
-  bool get isInfinite => _isInfinite;
+  bool get isInterestOnly => _isInterestOnly;
   
   // Calculate the number of payments so far.
   int get length => _payments.length;
@@ -42,15 +42,7 @@ class Amortization {
       amount = _debt.minPayment;
     }
     
-    num interest = _unpaidInterest();
-    
-    // If it will never be paid off, mark it as inifite.
-    if(amount <= interest) {
-      _isInfinite = true;
-      return;
-    }
-    
-    while(_balance > 0) {
+    while(_balance > 0 && !isInterestOnly) {
       addPayment(amount);
     }
   }
@@ -74,11 +66,9 @@ class Amortization {
     num interest = _unpaidInterest();
     num principal = double.parse((math.min(amount - interest, _balance)).toStringAsFixed(2));
     
-    // Paid more than the interest, mark as not being infinite.
-    if(principal > 0) {
-      _isInfinite = false;
-    }
-    
+    // Determine if only paying on the interest.
+    _isInterestOnly = principal <= 0;
+        
     Payment payment = new Payment(principal, interest);
     _payments.add(payment);
     
