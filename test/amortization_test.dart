@@ -1,4 +1,4 @@
-library test.schedule_test;
+library test.amortization_test;
 
 import 'package:unittest/unittest.dart';
 import 'package:snowball/amortization.dart';
