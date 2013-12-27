@@ -5,11 +5,11 @@ library debt;
  */
 class Debt {
   var _label;
-  double _balance;
-  double _rate;
-  double _minPayment;
+  num _balance;
+  num _rate;
+  num _minPayment;
   
-  Debt(String label, double balance, double rate, double minPayment) {
+  Debt(String label, num balance, num rate, num minPayment) {
     this.label = label;
     this.balance = balance;
     this.rate = rate;
@@ -17,7 +17,7 @@ class Debt {
   }
   
   get balance => _balance;
-  set balance(double value) {
+  set balance(num value) {
     if (value.isNegative) {
       throw new Exception('Balance cannot be negative');
     }
@@ -33,7 +33,7 @@ class Debt {
   }
   
   get minPayment => _minPayment;
-  set minPayment(double value) {
+  set minPayment(num value) {
     if (value.isNegative) {
       throw new Exception('Minimum payment cannot be negative');
     }
@@ -41,7 +41,7 @@ class Debt {
   }
   
   get rate => _rate;
-  set rate(double value) {
+  set rate(num value) {
     if (value.isNegative) {
       throw new Exception('Rate cannot be negative');
     }
