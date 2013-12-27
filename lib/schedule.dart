@@ -23,7 +23,7 @@ class Schedule {
     _label = value;
   }
   
-  get debts => _debts;
+  List<Debt> get debts => _debts;
   set debts(List<Debt> value) {
     if (value == null) {
       throw new Exception('Debts cannot be null');
