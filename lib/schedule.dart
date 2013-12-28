@@ -1,5 +1,4 @@
-library schedule;
-import 'package:snowball/debt.dart';
+part of snowball;
 
 /**
  * Schedule of debt repayment.

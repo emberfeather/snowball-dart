@@ -1,7 +1,7 @@
 library test.payment_test;
 
 import 'package:unittest/unittest.dart';
-import 'package:snowball/payment.dart';
+import 'package:snowball/snowball.dart';
 
 main() {
   test('Simple values', () {

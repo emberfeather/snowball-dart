@@ -1,4 +1,4 @@
-library debt;
+part of snowball;
 
 /**
  * Debt class for describing and working with specific debt information.

@@ -1,7 +1,7 @@
 library test.debt_test;
 
 import 'package:unittest/unittest.dart';
-import 'package:snowball/debt.dart';
+import 'package:snowball/snowball.dart';
 
 var debt1;
 

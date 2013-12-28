@@ -1,4 +1,4 @@
-library payment;
+part of snowball;
 
 /**
  * Payment information.

@@ -1,7 +1,4 @@
-library amortization;
-import 'dart:math' as math;
-import 'package:snowball/debt.dart';
-import 'package:snowball/payment.dart';
+part of snowball;
 
 /**
  * Amortization of debt repayment.
