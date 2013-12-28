@@ -3,6 +3,8 @@ part of snowball;
 /**
  * Constants for referencing repayment methods.
  */
+const String BALANCEPAYMENTRATIO = 'balancePaymentRatio';
+const String BALANCERATERATIO = 'balanceRateRatio';
 const String HIGHESTBALANCEFIRST = 'highestBalanceFirst';
 const String HIGHESTRATEFIRST = 'highestRateFirst';
 const String LOWESTBALANCEFIRST = 'lowestBalanceFirst';
@@ -21,14 +23,17 @@ class Repayment {
     } else {
       Method method;
       switch(methodName) {
+        case BALANCEPAYMENTRATIO:
+          method = new BalancePaymentRatioMethod();
+          break;
+        case BALANCERATERATIO:
+          method = new BalanceRateRatioMethod();
+          break;
         case HIGHESTBALANCEFIRST:
           method = new HighestBalanceFirstMethod();
           break;
         case HIGHESTRATEFIRST:
           method = new HighestRateFirstMethod();
-          break;
-        case HIGHESTBALANCEFIRST:
-          method = new HighestBalanceFirstMethod();
           break;
         case LOWESTBALANCEFIRST:
           method = new LowestBalanceFirstMethod();
@@ -74,6 +79,20 @@ class Method {
  */
 class CachableMethod extends Method {
   final bool allowCaching = true;
+}
+
+/**
+ * Method - Balance Payment Ratio
+ */
+class BalancePaymentRatioMethod extends CachableMethod {
+  int compare(Debt a, Debt b) => ((a.balance/a.minPayment) - (b.balance/b.minPayment)).toInt();
+}
+
+/**
+ * Method - Balance Rate Ratio
+ */
+class BalanceRateRatioMethod extends CachableMethod {
+  int compare(Debt a, Debt b) => ((a.balance/a.rate) - (b.balance/b.rate)).toInt();
 }
 
 /**
