@@ -1,4 +1,4 @@
-library debt;
+part of snowball;
 
 /**
  * Debt class for describing and working with specific debt information.
@@ -16,7 +16,7 @@ class Debt {
     this.minPayment = minPayment;
   }
   
-  get balance => _balance;
+  num get balance => _balance;
   set balance(num value) {
     if (value.isNegative) {
       throw new Exception('Balance cannot be negative');
@@ -32,7 +32,7 @@ class Debt {
     _label = value;
   }
   
-  get minPayment => _minPayment;
+  num get minPayment => _minPayment;
   set minPayment(num value) {
     if (value.isNegative) {
       throw new Exception('Minimum payment cannot be negative');
@@ -40,7 +40,7 @@ class Debt {
     _minPayment = value;
   }
   
-  get rate => _rate;
+  num get rate => _rate;
   set rate(num value) {
     if (value.isNegative) {
       throw new Exception('Rate cannot be negative');

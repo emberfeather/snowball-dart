@@ -1,8 +1,7 @@
 library test.schedule_test;
 
 import 'package:unittest/unittest.dart';
-import 'package:snowball/schedule.dart';
-import 'package:snowball/debt.dart';
+import 'package:snowball/snowball.dart';
 
 var schedules;
 var debts;
