@@ -50,4 +50,6 @@ class Debt {
     }
     _rate = value;
   }
+  
+  String toString() => '$label ( $balance @ $rate w/ $minPayment )';
 }

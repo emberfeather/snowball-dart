@@ -4,5 +4,6 @@ author: Randy Merrill
 description: A simple debt snowball scheduler.
 dependencies:
   browser: any
+  intl: any
   js: any
   unittest: any
