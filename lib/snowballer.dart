@@ -5,13 +5,13 @@ part of snowball;
  */
 class Snowballer {
   List<String> _availableMethods = [
-                                    BALANCEPAYMENTRATIO,
-                                    BALANCERATERATIO,
-                                    HIGHESTBALANCEFIRST,
-                                    HIGHESTRATEFIRST ,
-                                    LOWESTBALANCEFIRST,
-                                    LOWESTRATEFIRST
-                                    ];
+    BALANCEPAYMENTRATIO,
+    BALANCERATERATIO,
+    HIGHESTBALANCEFIRST,
+    HIGHESTRATEFIRST ,
+    LOWESTBALANCEFIRST,
+    LOWESTRATEFIRST
+  ];
   List<String> _methods = [];
   List<Debt> _debts = [];
 
