@@ -18,33 +18,18 @@ void setup() {
 }
 
 main() {
-  test('Simple values', () {
-    setup();
-    var snowballer = new Snowballer(debts['eqBalanceAscRateEqMinimum']);
-    expect(snowballer.debts, debts['eqBalanceAscRateEqMinimum']);
-    expect(snowballer.methods, snowballer.availableMethods);
-  });
-
   group('Methods', () {
     test('Initialization', () {
-      setup();
-      var snowballer = new Snowballer(debts['eqBalanceAscRateEqMinimum'], [HIGHESTBALANCEFIRST]);
+      var snowballer = new Snowballer([HIGHESTBALANCEFIRST]);
       expect(snowballer.methods, [HIGHESTBALANCEFIRST]);
     });
+  });
 
-    test('Reassignment', () {
+  group('Simple snowballing', () {
+    test('Highest Balance First', () {
       setup();
-      var snowballer = new Snowballer(debts['eqBalanceAscRateEqMinimum']);
-      expect(snowballer.methods, snowballer.availableMethods);
-      snowballer.methods = [HIGHESTBALANCEFIRST];
-      expect(snowballer.methods, [HIGHESTBALANCEFIRST]);
-    });
+      var snowballer = new Snowballer([HIGHESTBALANCEFIRST]);
 
-    test('Invalid method', () {
-      setup();
-      var snowballer = new Snowballer(debts['eqBalanceAscRateEqMinimum']);
-      expect(snowballer.methods, snowballer.availableMethods);
-      expect(() { snowballer.methods = ['nonexistantMethod']; }, throwsException);
     });
   });
 }

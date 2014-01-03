@@ -4,29 +4,28 @@ part of snowball;
  * Schedule of debt repayment.
  */
 class Schedule {
-  var _label;
+  var _method;
   List<Debt> _debts = [];
-  
-  Schedule(String label, [List<Debt> debts]) {
-    this.label = label;
-    if(debts != null) {
-      this.debts = debts;
-    }
+
+  Schedule(String method, List<Debt> debts) {
+    _method = method;
+    _debts = debts;
   }
-  
-  get label => _label;
-  set label(var value) {
-    if (value.isEmpty) {
-      throw new Exception('Label cannot be empty');
-    }
-    _label = value;
-  }
-  
+
+  String get method => _method;
   List<Debt> get debts => _debts;
-  set debts(List<Debt> value) {
-    if (value == null) {
-      throw new Exception('Debts cannot be null');
-    }
-    _debts = value;
+
+  /**
+   * Adds a single payment to the schedule.
+   */
+  num addPayment(num payment) {
+
+  }
+
+  /**
+   * Uses the payment to completely amortize and schedule all debts for repayment.
+   */
+  void schedule(num payment) {
+
   }
 }

@@ -4,7 +4,7 @@ part of snowball;
  * Main snowballing logic for computing the snowballed schedules across multiple debts.
  */
 class Snowballer {
-  List<String> _availableMethods = [
+  List<String> _methods = [
     BALANCEPAYMENTRATIO,
     BALANCERATERATIO,
     HIGHESTBALANCEFIRST,
@@ -12,27 +12,12 @@ class Snowballer {
     LOWESTBALANCEFIRST,
     LOWESTRATEFIRST
   ];
-  List<String> _methods = [];
-  List<Debt> _debts = [];
 
-  Snowballer(List<Debt> debts, [List<String> methods]) {
-    this.debts = debts;
+  Snowballer([List<String> methods]) {
     if (methods != null) {
       this.methods = methods;
-    } else {
-      this.methods = _availableMethods;
     }
   }
-
-  List<Debt> get debts => _debts;
-  set debts(List<Debt> value) {
-    if (value == null) {
-      throw new Exception('Debts cannot be null');
-    }
-    _debts = value;
-  }
-
-  List<String> get availableMethods => _availableMethods;
 
   List<String> get methods => _methods;
   set methods(List<String> value) {
@@ -44,12 +29,20 @@ class Snowballer {
       throw new Exception('Need to specify at least one method for snowballing');
     }
 
-    for (var item in value) {
-      if (!_availableMethods.contains(item)) {
-        throw new Exception('$item is not a valid snowballing method');
-      }
+    _methods = value;
+  }
+
+  /**
+   * Generate the snowball schedules for all the methods with a given the payment.
+   */
+  Map snowball(List<Debt> debts, num payment) {
+    var schedules = {};
+
+    for (var method in this.methods) {
+      schedules[method] = new Schedule(method, debts);
+      schedules[method].schedule(payment);
     }
 
-    _methods = value;
+    return schedules;
   }
 }
