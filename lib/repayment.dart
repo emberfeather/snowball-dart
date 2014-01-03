@@ -1,16 +1,6 @@
 part of snowball;
 
 /**
- * Constants for referencing repayment methods.
- */
-const String BALANCEPAYMENTRATIO = 'balancePaymentRatio';
-const String BALANCERATERATIO = 'balanceRateRatio';
-const String HIGHESTBALANCEFIRST = 'highestBalanceFirst';
-const String HIGHESTRATEFIRST = 'highestRateFirst';
-const String LOWESTBALANCEFIRST = 'lowestBalanceFirst';
-const String LOWESTRATEFIRST = 'lowestRateFirst';
-
-/**
  * Factory class for creating singletons for each repayment method.
  */
 class Repayment {
