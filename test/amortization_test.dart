@@ -9,7 +9,7 @@ main() {
     var amortized = new Amortization(debt);
     expect(amortized.debt, debt);
   });
-  
+
   group('Simple debt', () {
     test('Single payment', () {
       var debt = new Debt('Test1', 100.0, .1, 25.0);
@@ -20,14 +20,22 @@ main() {
       expect(amortized.payments[0].interest, 0.83);
       expect(amortized.payments[0].principal, 24.17);
     });
-    
+
+    test('Zero', () {
+      var debt = new Debt('Test1', 100.0, .1, 25.0);
+      var amortized = new Amortization(debt);
+      expect(amortized.payments.length, 0);
+      amortized.addPayment(0);
+      expect(amortized.payments.length, 1);
+    });
+
     test('Non-payment', () {
       var debt = new Debt('Test1', 100.0, .1, 25.0);
       var amortized = new Amortization(debt);
       expect(amortized.payments.length, 0);
-      expect(() { amortized.addPayment(0); }, throwsException);
+      expect(() { amortized.addPayment(-1); }, throwsException);
     });
-    
+
     test('Amortize payments', () {
       var debt = new Debt('Test1', 100.0, .1, 25.0);
       var amortized = new Amortization(debt);
@@ -37,7 +45,7 @@ main() {
       expect(amortized.payments[4].interest, 0.02);
       expect(amortized.payments[4].principal, 2.11);
     });
-    
+
     test('Varied payments', () {
       var debt = new Debt('Test1', 100.0, .1, 25.0);
       var amortized = new Amortization(debt);
@@ -67,7 +75,7 @@ main() {
       expect(amortized.payments[5].interest, 0.24);
       expect(amortized.payments[5].principal, 28.39);
     });
-    
+
     test('Payoff', () {
       var debt = new Debt('Test1', 100.0, .1, 25.0);
       var amortized = new Amortization(debt);
