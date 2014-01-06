@@ -22,7 +22,7 @@ class Payment {
     _principal = value;
   }
 
-  num get total => _principal + _interest;
+  num get total => double.parse((_principal + _interest).toStringAsFixed(2));
 
   String toString() => 'Payment: $total';
 }

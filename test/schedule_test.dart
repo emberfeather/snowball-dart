@@ -70,9 +70,14 @@ main() {
     test('Payoff multiple debts in single payment', () {
       setup();
       var schedule = new Schedule(LOWESTBALANCEFIRST, debts['eqBalanceEqRateEqMinimum']);
-      expect(schedule.method, LOWESTBALANCEFIRST);
-      expect(schedule.debts, debts['eqBalanceEqRateEqMinimum']);
-      // TODO Write a test that shows multiple debts being paid off with a single payment.
+      var remainingPayment = schedule.schedulePayment(450);
+      expect(remainingPayment, 90.34);
+
+      // Check to make sure that the debts were paid off at the correct payment with the correct amount.
+      expect(schedule.schedule[debts['eqBalanceEqRateEqMinimum'][0]].payments[0].total, 201.67);
+      expect(schedule.schedule[debts['eqBalanceEqRateEqMinimum'][1]].payments[0].total, 201.67);
+      expect(schedule.schedule[debts['eqBalanceEqRateEqMinimum'][2]].payments[1].total, 166.39);
+      expect(schedule.schedule[debts['eqBalanceEqRateEqMinimum'][3]].payments[1].total, 193.27);
     });
   });
 }
