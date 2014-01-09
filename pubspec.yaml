@@ -3,6 +3,7 @@ version: 0.1.0
 author: Randy Merrill
 description: A simple debt snowball scheduler.
 dependencies:
+  benchmark_harness: any
   browser: any
   intl: any
   js: any
