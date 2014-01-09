@@ -5,6 +5,5 @@ description: A simple debt snowball scheduler.
 dependencies:
   benchmark_harness: any
   browser: any
-  intl: any
   js: any
   unittest: any
