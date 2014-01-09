@@ -6,7 +6,7 @@ part of snowball;
 class Repayment {
   final Method method;
   static final Map<String, Repayment> _cache = <String, Repayment>{};
-  
+
   factory Repayment(String methodName) {
     if (_cache.containsKey(methodName)) {
       return _cache[methodName];
@@ -34,15 +34,15 @@ class Repayment {
         default:
           throw new Exception('Unknown repayment method: $methodName');
       }
-      
+
       final Repayment repayment = new Repayment._internal(method);
       _cache[methodName] = repayment;
       return repayment;
     }
   }
-  
+
   Repayment._internal(this.method);
-  
+
   List<Debt> sort(List<Debt> debts) => method.sort(debts);
 }
 
@@ -51,11 +51,11 @@ class Repayment {
  */
 class Method {
   final bool allowCaching = false;
-  
+
   int compare(Debt a, Debt b) {
     throw new Exception('Missing compare function.');
   }
-  
+
   List<Debt> sort(List<Debt> debts) {
     List<Debt> sorted = <Debt>[];
     sorted.addAll(debts);
