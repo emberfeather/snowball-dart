@@ -73,7 +73,6 @@ class Schedule {
       }
     }
 
-
     // Distribute unused payment.
     for (var i = 0; i < repaymentOrder.length; i++) {
       if (remainingPayment > 0 && !_schedule[repaymentOrder[i]].isPaid

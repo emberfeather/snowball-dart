@@ -61,9 +61,21 @@ main() {
     test('Interest only payment', () {
       setup();
       var schedule = new Schedule(LOWESTBALANCEFIRST, debts['eqBalanceEqRateEqMinimumInterestOnly']);
-      expect(schedule.method, LOWESTBALANCEFIRST);
-      expect(schedule.debts, debts['eqBalanceEqRateEqMinimumInterestOnly']);
-      // TODO Write a test that shows that the processing correctly stops when it is doing interest only repayment.
+      var remainingPayment = schedule.schedulePayment(6.68);
+      expect(schedule.isInterestOnly, true);
+      expect(remainingPayment, 0);
+
+      // Check to make sure that the debts have at least one payment.
+      expect(schedule.schedule[debts['eqBalanceEqRateEqMinimumInterestOnly'][0]].payments[0].total, 1.67);
+      expect(schedule.schedule[debts['eqBalanceEqRateEqMinimumInterestOnly'][1]].payments[0].total, 1.67);
+      expect(schedule.schedule[debts['eqBalanceEqRateEqMinimumInterestOnly'][2]].payments[0].total, 1.67);
+      expect(schedule.schedule[debts['eqBalanceEqRateEqMinimumInterestOnly'][3]].payments[0].total, 1.67);
+
+      // Show that the processing correctly stops when it is doing interest only repayment.
+      expect(schedule.schedule[debts['eqBalanceEqRateEqMinimumInterestOnly'][0]].payments.length, 1);
+      expect(schedule.schedule[debts['eqBalanceEqRateEqMinimumInterestOnly'][1]].payments.length, 1);
+      expect(schedule.schedule[debts['eqBalanceEqRateEqMinimumInterestOnly'][2]].payments.length, 1);
+      expect(schedule.schedule[debts['eqBalanceEqRateEqMinimumInterestOnly'][3]].payments.length, 1);
     });
 
     // When paying off multiple in a single payment it should keep applying extra funds until there are no unpaid debts.
