@@ -47,6 +47,21 @@ void main() {
     });
   });
 
+  group('Percent', () {
+    test('Get', () {
+      setup();
+      expect(debt1.rate, .1);
+      expect(debt1.percent, 10.0);
+    });
+
+    test('Set', () {
+      setup();
+      expect(debt1.rate, .1);
+      debt1.percent = 22.2;
+      expect(debt1.rate, .222);
+    });
+  });
+
   group('Rate', () {
     test('Reassignment', () {
       setup();

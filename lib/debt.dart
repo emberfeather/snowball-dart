@@ -8,14 +8,14 @@ class Debt {
   num _balance;
   num _rate;
   num _minPayment;
-  
+
   Debt(String label, num balance, num rate, num minPayment) {
     this.label = label;
     this.balance = balance;
     this.rate = rate;
     this.minPayment = minPayment;
   }
-  
+
   num get balance => _balance;
   set balance(num value) {
     if (value.isNegative) {
@@ -23,7 +23,7 @@ class Debt {
     }
     _balance = value;
   }
-  
+
   get label => _label;
   set label(var value) {
     if (value.isEmpty) {
@@ -31,7 +31,7 @@ class Debt {
     }
     _label = value;
   }
-  
+
   num get minPayment => _minPayment;
   set minPayment(num value) {
     if (value.isNegative) {
@@ -39,7 +39,12 @@ class Debt {
     }
     _minPayment = value;
   }
-  
+
+  num get percent => _rate * 100;
+  set percent(num value) {
+    this.rate = value / 100;
+  }
+
   num get rate => _rate;
   set rate(num value) {
     if (value.isNegative) {
@@ -50,6 +55,6 @@ class Debt {
     }
     _rate = value;
   }
-  
+
   String toString() => '$label ( $balance @ $rate w/ $minPayment )';
 }
