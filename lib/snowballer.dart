@@ -40,7 +40,7 @@ class Snowballer {
 
     for (var method in this.methods) {
       schedules[method] = new Schedule(method, debts);
-      schedules[method].schedule(payment);
+      schedules[method].schedulePayment(payment);
     }
 
     return schedules;
