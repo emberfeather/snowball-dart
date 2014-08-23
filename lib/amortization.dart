@@ -48,7 +48,7 @@ class Amortization {
   /**
    * Determine if the debt has been paid off with the amortization.
    */
-  bool get isPaid => balance <= 0;
+  bool get isPaid => balance < 0.01;
 
   /**
    * Calculate the number of payments so far.
@@ -118,14 +118,14 @@ class Amortization {
     num interest = _unpaidInterest();
     num principal = double.parse((math.min(amount - interest, _balance)).toStringAsFixed(2));
 
-    // Determine if only paying on the interest.
-    _isInterestOnly = principal <= 0;
-
     Payment payment = new Payment(principal, interest);
     _payments.add(payment);
 
     // Update the balance to reflect the payment.
     _balance -= payment.principal;
+
+    // Determine if only paying on the interest.
+    _isInterestOnly = payment.principal <= 0.0;
 
     // Return any leftover amount.
     return amount - payment.total;

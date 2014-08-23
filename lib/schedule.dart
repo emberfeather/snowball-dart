@@ -95,7 +95,7 @@ class Schedule {
   num addPayment(num payment) {
     num remainingPayment = payment;
     List<Debt> repaymentOrder = _repaymentMethod.sort(debts);
-    List currentPayment = new List.filled(repaymentOrder.length, 0);
+    List currentPayment = new List.filled(repaymentOrder.length, 0.0);
     num extraPayment;
 
     // Make all the minimum payments.
@@ -110,8 +110,8 @@ class Schedule {
 
     // Distribute unused payment.
     for (var i = 0; i < repaymentOrder.length; i++) {
-      if (remainingPayment > 0 && !_schedule[repaymentOrder[i]].isPaid
-          && _schedule[repaymentOrder[i]].payoff > repaymentOrder[i].minPayment) {
+      if (remainingPayment > 0.0 && !_schedule[repaymentOrder[i]].isPaid
+          && _schedule[repaymentOrder[i]].payoff > currentPayment[i]) {
         // Pay off in the repayment order.
         extraPayment = math.min(_schedule[repaymentOrder[i]].payoff - repaymentOrder[i].minPayment, remainingPayment);
         currentPayment[i] += extraPayment;
@@ -121,7 +121,7 @@ class Schedule {
 
     // Commit the actual payments.
     for (var i = 0; i < repaymentOrder.length; i++) {
-      if (!_schedule[repaymentOrder[i]].isPaid) {
+      if (!_schedule[repaymentOrder[i]].isPaid && currentPayment[i] > 0) {
         _schedule[repaymentOrder[i]].addPayment(currentPayment[i]);
       }
     }
