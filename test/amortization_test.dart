@@ -96,5 +96,14 @@ main() {
       expect(amortized.interest, 2.13);
       expect(amortized.total, 102.13);
     });
+
+    test('Infinite interest and total', () {
+      var debt = new Debt('Test1', 100.0, .1, 0.83);
+      var amortized = new Amortization(debt);
+      amortized.addPayment(0.83);
+      expect(amortized.principal, 0.00);
+      expect(amortized.interest, double.INFINITY);
+      expect(amortized.total, double.INFINITY);
+    });
   });
 }

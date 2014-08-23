@@ -26,6 +26,11 @@ class Amortization {
    * Sum of all interest paid so far.
    */
   num get interest {
+    // Interest only is infinite interest.
+    if( this.isInterestOnly ) {
+      return double.INFINITY;
+    }
+
     num paidInterest = 0.0;
 
     for (var payment in _payments) {
