@@ -23,6 +23,19 @@ class Amortization {
   Debt get debt => _debt;
 
   /**
+   * Sum of all interest paid so far.
+   */
+  num get interest {
+    num paidInterest = 0.0;
+
+    for (var payment in _payments) {
+      paidInterest += payment.interest;
+    }
+
+    return double.parse(paidInterest.toStringAsFixed(2));
+  }
+
+  /**
    * Amortization is infinite if not paying more than interest.
    */
   bool get isInterestOnly => _isInterestOnly;
@@ -44,6 +57,26 @@ class Amortization {
    */
   num get payoff {
     return double.parse((_unpaidInterest() + _balance).toStringAsFixed(2));
+  }
+
+  /**
+   * Sum of all principal paid so far.
+   */
+  num get principal {
+    num paidPricipal = 0.0;
+
+    for (var payment in _payments) {
+      paidPricipal += payment.principal;
+    }
+
+    return double.parse(paidPricipal.toStringAsFixed(2));
+  }
+
+  /**
+   * Sum all interest and payments made.
+   */
+  num get total {
+    return double.parse((this.interest + this.principal).toStringAsFixed(2));
   }
 
   /**

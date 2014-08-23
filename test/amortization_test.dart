@@ -83,5 +83,18 @@ main() {
       amortized.addPayment(25);
       expect(amortized.payoff, 76.46);
     });
+
+    test('Principal, interest, and total', () {
+      var debt = new Debt('Test1', 100.0, .1, 25.0);
+      var amortized = new Amortization(debt);
+      amortized.addPayment(25);
+      amortized.addPayment(25);
+      amortized.addPayment(25);
+      amortized.addPayment(25);
+      amortized.addPayment(25);
+      expect(amortized.principal, 100);
+      expect(amortized.interest, 2.13);
+      expect(amortized.total, 102.13);
+    });
   });
 }
