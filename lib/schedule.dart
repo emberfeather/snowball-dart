@@ -20,6 +20,21 @@ class Schedule {
     }
   }
 
+  List<Debt> get debts => _debts;
+
+  /**
+   * Sum of all interest paid so far.
+   */
+  num get interest {
+    num paidInterest = 0.0;
+
+    for (var debt in _debts) {
+      paidInterest += _schedule[debt].interest;
+    }
+
+    return double.parse(paidInterest.toStringAsFixed(2));
+  }
+
   /**
    * Determine if all of the debts not paid are in interest only repayment.
    */
@@ -51,8 +66,28 @@ class Schedule {
   }
 
   String get method => _method;
-  List<Debt> get debts => _debts;
+
+  /**
+   * Sum of all interest paid so far.
+   */
+  num get principal {
+    num paidPrincipal = 0.0;
+
+    for (var debt in _debts) {
+      paidPrincipal += _schedule[debt].principal;
+    }
+
+    return double.parse(paidPrincipal.toStringAsFixed(2));
+  }
+
   Map get schedule => _schedule;
+
+  /**
+   * Sum all interest and payments made.
+   */
+  num get total {
+    return double.parse((this.interest + this.principal).toStringAsFixed(2));
+  }
 
   /**
    * Distributes a single payment across unpaid debts.

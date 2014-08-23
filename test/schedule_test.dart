@@ -91,5 +91,17 @@ main() {
       expect(schedule.schedule[debts['eqBalanceEqRateEqMinimum'][2]].payments[1].total, 166.39);
       expect(schedule.schedule[debts['eqBalanceEqRateEqMinimum'][3]].payments[1].total, 193.27);
     });
+
+    test('Principal, interest, and total', () {
+      setup();
+      var schedule = new Schedule(LOWESTBALANCEFIRST, debts['eqBalanceEqRateEqMinimum']);
+      var remainingPayment = schedule.schedulePayment(50);
+      expect(remainingPayment, 37.76);
+
+      // Check to make sure that the debt principal, interest, and totals all match up.
+      expect(schedule.principal, 800.00);
+      expect(schedule.interest, 62.24);
+      expect(schedule.total, 862.24);
+    });
   });
 }
