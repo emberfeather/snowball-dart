@@ -4,11 +4,20 @@ part of snowball;
  * Main snowballing logic for computing the snowballed schedules across multiple debts.
  */
 class Snowballer {
+  static Map _labels = {
+    BALANCEPAYMENTRATIO: 'Balance-to-Payment Ratio',
+    BALANCERATERATIO: 'Balance-to-Rate Ratio',
+    HIGHESTBALANCEFIRST: 'Highest Balance First',
+    HIGHESTRATEFIRST: 'Highest Rate First',
+    LOWESTBALANCEFIRST: 'Lowest Balance First',
+    LOWESTRATEFIRST: 'Lowest Rate First'
+  };
+
   List<String> _methods = [
     BALANCEPAYMENTRATIO,
     BALANCERATERATIO,
     HIGHESTBALANCEFIRST,
-    HIGHESTRATEFIRST ,
+    HIGHESTRATEFIRST,
     LOWESTBALANCEFIRST,
     LOWESTRATEFIRST
   ];

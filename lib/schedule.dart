@@ -65,6 +65,8 @@ class Schedule {
     return true;
   }
 
+  String get label => Snowballer._labels[_method];
+
   String get method => _method;
 
   /**
@@ -142,7 +144,7 @@ class Schedule {
       }
     }
     if (payment < minimumPayments) {
-      throw new Exception('Not enough payment to pay minimum payments.');
+      throw new PaymentException('Not enough payment to pay minimum payments.');
     }
 
     // Keep adding payments until all the debts are paid.
