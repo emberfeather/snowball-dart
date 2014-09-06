@@ -82,6 +82,13 @@ class Schedule {
     return double.parse(paidPrincipal.toStringAsFixed(2));
   }
 
+  /**
+   * Sort the debts into the proper repayment order.
+   */
+  List<Debt> get orderedDebts {
+    return _repaymentMethod.sort(debts);
+  }
+
   Map get schedule => _schedule;
 
   /**
@@ -96,7 +103,7 @@ class Schedule {
    */
   num addPayment(num payment) {
     num remainingPayment = payment;
-    List<Debt> repaymentOrder = _repaymentMethod.sort(debts);
+    List<Debt> repaymentOrder = this.orderedDebts;
     List currentPayment = new List.filled(repaymentOrder.length, 0.0);
     num extraPayment;
 

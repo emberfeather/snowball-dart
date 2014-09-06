@@ -1,10 +1,10 @@
 part of snowball;
 
 class SnowballException implements Exception {
-  String cause;
-  SnowballException(this.cause);
+  String message;
+  SnowballException(this.message);
 
-  String toString() => 'Snowball: $cause';
+  String toString() => 'Snowball: $message';
 }
 
 class PaymentException extends SnowballException {
