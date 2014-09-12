@@ -103,5 +103,29 @@ main() {
       expect(schedule.interest, 62.24);
       expect(schedule.total, 862.24);
     });
+
+    test('Year and month calculation', () {
+      setup();
+      var schedule = new Schedule(LOWESTBALANCEFIRST, debts['eqBalanceEqRateEqMinimum']);
+      var remainingPayment = schedule.schedulePayment(50);
+
+      // Based on the number of payments, the number of years and months should be calculated.
+      expect(schedule.length, 18);
+      expect(schedule.years, 1);
+      expect(schedule.months, 6);
+    });
+
+    test('Year and month calculation, infinite', () {
+      setup();
+      var schedule = new Schedule(LOWESTBALANCEFIRST, debts['eqBalanceEqRateEqMinimumInterestOnly']);
+      var remainingPayment = schedule.schedulePayment(6.68);
+      expect(schedule.isInterestOnly, true);
+      expect(remainingPayment, 0);
+
+      // Based on the number of payments, the number of years and months should be calculated.
+      expect(schedule.length, double.INFINITY);
+      expect(schedule.years, double.INFINITY);
+      expect(schedule.months, double.INFINITY);
+    });
   });
 }

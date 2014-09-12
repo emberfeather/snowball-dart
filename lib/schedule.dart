@@ -6,6 +6,7 @@ part of snowball;
 class Schedule {
   String _method;
   List<Debt> _debts = [];
+  int _paymentsPerYear = 12;
   Map _schedule = {};
   Method _repaymentMethod;
 
@@ -67,7 +68,35 @@ class Schedule {
 
   String get label => Snowballer._labels[_method];
 
+  /**
+   * Find the length of the longest repayment.
+   */
+  num get length {
+    if (this.isInterestOnly) {
+      return double.INFINITY;
+    }
+
+    int maxLength = 0;
+
+    for (var debt in _debts) {
+      maxLength = math.max(maxLength, _schedule[debt].length);
+    }
+
+    return maxLength;
+  }
+
   String get method => _method;
+
+  /**
+   * Conveniently calculate the number of months (not including years) for repayment.
+   */
+  num get months {
+    if (this.isInterestOnly) {
+      return double.INFINITY;
+    }
+
+    return this.length.remainder(this._paymentsPerYear);
+  }
 
   /**
    * Sum of all interest paid so far.
@@ -96,6 +125,17 @@ class Schedule {
    */
   num get total {
     return double.parse((this.interest + this.principal).toStringAsFixed(2));
+  }
+
+  /**
+   * Conveniently calculate the number of years for repayment.
+   */
+  num get years {
+    if (this.isInterestOnly) {
+      return double.INFINITY;
+    }
+
+    return this.length ~/ this._paymentsPerYear;
   }
 
   /**
