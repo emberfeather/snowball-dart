@@ -19,7 +19,7 @@ class Debt {
   num get balance => _balance;
   set balance(num value) {
     if (value.isNegative) {
-      throw new Exception('Balance cannot be negative');
+      throw new BalanceException('Balance cannot be negative');
     }
     _balance = value;
   }
@@ -27,7 +27,7 @@ class Debt {
   get label => _label;
   set label(var value) {
     if (value.isEmpty) {
-      throw new Exception('Label cannot be empty');
+      throw new LabelException('Label cannot be empty');
     }
     _label = value;
   }
@@ -35,7 +35,7 @@ class Debt {
   num get minPayment => _minPayment;
   set minPayment(num value) {
     if (value.isNegative) {
-      throw new Exception('Minimum payment cannot be negative');
+      throw new MinPaymentException('Minimum payment cannot be negative');
     }
     _minPayment = value;
   }
@@ -48,10 +48,10 @@ class Debt {
   num get rate => _rate;
   set rate(num value) {
     if (value.isNegative) {
-      throw new Exception('Rate cannot be negative');
+      throw new RateException('Rate cannot be negative');
     }
     if (value > 3) {
-      throw new Exception('Rate cannot be over 3');
+      throw new RateException('Rate cannot be over 300%');
     }
     _rate = value;
   }

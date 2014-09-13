@@ -4,7 +4,7 @@ import 'dart:math' as math;
 
 part 'amortization.dart';
 part 'debt.dart';
-part 'errors.dart';
+part 'exceptions.dart';
 part 'payment.dart';
 part 'repayment.dart';
 part 'schedule.dart';
