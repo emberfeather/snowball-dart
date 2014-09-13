@@ -37,6 +37,14 @@ class Debt {
     if (value.isNegative) {
       throw new MinPaymentException('Minimum payment cannot be negative');
     }
+
+    var interestAmount = this.balance * (this.rate / 12);
+    interestAmount = double.parse(interestAmount.toStringAsFixed(2));
+    if (value < interestAmount) {
+      interestAmount = interestAmount.toStringAsFixed(2);
+      throw new MinPaymentException('Minimum payment needs to be at least $interestAmount');
+    }
+
     _minPayment = value;
   }
 

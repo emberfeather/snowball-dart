@@ -89,15 +89,17 @@ void main() {
       expect(debt1.minPayment, 135.0);
     });
 
+    test('At least interest', () {
+      setup();
+      // Interest only should work correctly.
+      debt1.minPayment = 20.83;
+      // Below interest should not work.
+      expect(() { debt1.minPayment = 20.82; }, throwsException);
+    });
+
     test('Negative', () {
       setup();
       expect(() { debt1.minPayment = -.1; }, throwsException);
-    });
-
-    test('Zero', () {
-      setup();
-      debt1.minPayment = 0.0;
-      expect(debt1.minPayment, 0.0);
     });
   });
 }
